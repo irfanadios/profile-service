@@ -1,0 +1,37 @@
+#--------------------------------------
+--- # Data Source Properties
+#--------------------------------------
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/profile-service
+        username: postgres
+        password: pgsqlpassword1
+        driver-class-name: org.postgresql.Driver
+    jpa:
+        hibernate:
+            ddl-auto: validate
+        show-sql: true
+#--------------------------------------
+--- # Discovery
+#--------------------------------------
+spring:
+    application:
+        name: profile-service
+server:
+    port: 0
+eureka:
+    instance:
+        instance-id: ${spring.application.name}:${random.uuid}
+#--------------------------------------
+--- # Kafka
+#--------------------------------------
+spring:
+    kafka:
+        consumer:
+            bootstrap-servers: localhost:9092
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+            group-id: mygroup
+            auto-offset-reset: earliest
+        topic:
+            name: auth-profile-topics
