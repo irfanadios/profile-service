@@ -18,7 +18,7 @@ public class KafkaConsumer {
     @Autowired
     private ProfileRepository profileRepository;
 
-    @KafkaListener(topics = "auth-profile-service", groupId = "mygroup")
+    @KafkaListener(topics = "auth-profile-topics", groupId = "mygroup")
     public void consume(String message) {
         logger.info(message);
         Profile profile = Profile.builder().userId(UUID.fromString(message)).build();
