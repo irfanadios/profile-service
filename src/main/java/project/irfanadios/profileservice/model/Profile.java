@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @EntityListeners({AuditingEntityListener.class})
 public class Profile {
     @Id
-    @Column(name = "user_id", unique = true, nullable = false)
+    @Column(name = "user_id", unique = true, nullable = false, updatable = false)
     private UUID userId;
     @Column(name = "first_name")
     private String firstName;
